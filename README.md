@@ -1,4 +1,4 @@
-# 🚀 Django Portfolio (Production-Ready)
+# 🚀 Django Portfolio
 
 A full-stack Django portfolio application with a custom CMS dashboard, secure environment configuration, and PostgreSQL integration.
 
