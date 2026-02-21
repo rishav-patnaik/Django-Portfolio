@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %}Enroll Credential | System Admin{% endblock %}
+
+{% block content %}
+<div class="auth-wrapper">
+    <div class="glass-card auth-container">
+        <div class="auth-header">
+            <div class="auth-icon">
+                <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                    <polyline points="9 11 12 14 15 11"></polyline>
+                </svg>
+            </div>
+            <h2>Enroll Certification</h2>
+            <p class="muted-text">Add verified security or backend credentials to your profile</p>
+        </div>
+
+        <form method="post" class="auth-form" enctype="multipart/form-data">
+            {% csrf_token %}
+            
+            <div class="django-form-wrapper">
+                {{ form.as_p }}
+            </div>
+
+            <button type="submit" class="btn-solid full-width">
+                Register Credential
+            </button>
+        </form>
+
+        <div class="auth-footer">
+            <a href="{% url 'dashboard' %}" class="accent-link">← Back to Dashboard</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

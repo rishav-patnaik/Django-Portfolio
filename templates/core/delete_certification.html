@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block title %}System Warning | Revoke Credential{% endblock %}
+
+{% block content %}
+<div class="auth-wrapper">
+    <div class="glass-card auth-container border-danger">
+        <div class="auth-header">
+            <div class="auth-icon danger-glow">
+                <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+                    <line x1="12" y1="9" x2="12" y2="13"></line>
+                    <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                </svg>
+            </div>
+            <h2>Delete Certificate</h2>
+            <p class="muted-text">Permanent deletion of verified certificate data.</p>
+        </div>
+
+        <div class="warning-box">
+            <p>You are about to delete the following record:</p>
+            <strong class="gradient-text">{{ cert.title }}</strong>
+        </div>
+
+        <form method="post" class="auth-form">
+            {% csrf_token %}
+            <button type="submit" class="btn-purge full-width">
+                Confirm Deletion
+            </button>
+            
+            <div class="auth-footer">
+                <a href="{% url 'manage_certifications' %}" class="accent-link">Cancel and Return</a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

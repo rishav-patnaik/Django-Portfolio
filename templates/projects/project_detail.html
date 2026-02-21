@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="detail-container">
+    <header class="detail-header">
+        <a href="{% url 'project_list' %}" class="back-link">← Back to Projects</a>
+        <h1 class="gradient-text">{{ project.title }}</h1>
+    </header>
+
+    <div class="detail-layout">
+        <div class="detail-main">
+            <div class="glass-card detail-content">
+                <h3>Project Overview</h3>
+                <div class="description-text">
+                    {{ project.description|linebreaks }}
+                </div>
+            </div>
+        </div>
+
+        <aside class="detail-sidebar">
+            <div class="glass-card spec-card">
+                <h4>Technical Specifications</h4>
+                <div class="spec-item">
+                    <span class="spec-label">Tech Stack</span>
+                    <p class="spec-value">{{ project.tech_stack }}</p>
+                </div>
+                
+                <div class="spec-item">
+                    <span class="spec-label">Category</span>
+                    <p class="spec-value">{{ project.category }}</p>
+                </div>
+
+                {% if project.github_link %}
+                <div class="detail-actions">
+                    <a href="{{ project.github_link }}" target="_blank" class="btn-solid full-width">
+                        Source Code (GitHub)
+                    </a>
+                </div>
+                {% endif %}
+            </div>
+        </aside>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %}System Reconfig | Edit Milestone{% endblock %}
+
+{% block content %}
+<div class="auth-wrapper">
+    <div class="glass-card auth-container">
+        <div class="auth-header">
+            <div class="auth-icon">
+                <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 20v-6M9 20v-10M12 4v4M15 20v-4M5 20v-2M19 20v-8"></path>
+                </svg>
+            </div>
+            <h2>Reconfigure Event</h2>
+            <p class="muted-text">Modifying parameters for: <span class="accent-link">{{ milestone.title }}</span></p>
+        </div>
+
+        <form method="post" class="auth-form">
+            {% csrf_token %}
+            
+            <div class="django-form-wrapper">
+                {{ form.as_p }}
+            </div>
+
+            <button type="submit" class="btn-solid full-width">
+                Commit Updates
+            </button>
+        </form>
+
+        <div class="auth-footer">
+            <a href="{% url 'manage_milestones' %}" class="accent-link">← Cancel and Return</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

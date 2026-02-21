@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="about-wrapper">
+
+    <section class="about-header">
+        <p class="subtitle">Brief / Overview</p>
+        <h1 class="gradient-text">About Me</h1>
+        <p class="hero-description">
+            B.Tech Computer Science student specializing in <strong>Cybersecurity</strong> at Lovely Professional University. 
+            I bridge the gap between secure system administration and scalable backend development.
+        </p>
+    </section>
+
+    <div class="about-grid">
+
+        <!-- STATIC TECHNICAL SKILLS -->
+        <div class="glass-card">
+            <h3>Technical Skills</h3>
+            <div class="skills-category">
+                <p><strong>Languages:</strong> Python, C, C++, Shell</p>
+                <p><strong>Backend:</strong> Django, REST APIs, PostgreSQL</p>
+                <p><strong>Security:</strong> Wireshark, Nmap, Burp Suite, HTB</p>
+                <p><strong>Systems:</strong> Linux (LVM, ACL, File Systems)</p>
+            </div>
+        </div>
+
+        <!-- DYNAMIC CERTIFICATIONS -->
+        <div class="glass-card">
+            <h3>Certifications</h3>
+
+            {% if certifications %}
+                <ul class="milestone-list">
+                    {% for cert in certifications %}
+                        <li>
+                            <strong>{{ cert.title }}</strong> — {{ cert.organization }}
+                            <span class="muted-text">
+                                ({{ cert.issue_date }})
+                            </span>
+
+                            {% if cert.credential_url %}
+                                <br>
+                                <a href="{{ cert.credential_url }}" target="_blank" class="accent-link">
+                                    View Credential
+                                </a>
+                            {% endif %}
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p class="muted-text">No certifications added yet.</p>
+            {% endif %}
+        </div>
+
+    </div>
+
+    <!-- STATIC MILESTONES -->
+    <div class="glass-card" style="margin-top: 40px;">
+        <h3>Milestones</h3>
+        <ul class="milestone-list">
+
+            <ul class="milestone-list">
+                {% for milestone in milestones %}
+                    <li>
+                        <strong>{{ milestone.title }}</strong>
+                        {% if milestone.subtitle %}
+                            — {{ milestone.subtitle }}
+                        {% endif %}
+                        {% if milestone.year %}
+                            <span class="muted-text">({{ milestone.year }})</span>
+                        {% endif %}
+                    </li>
+                {% empty %}
+                    <li>No milestones added yet.</li>
+                {% endfor %}
+            </ul>
+
+            <li>
+                <strong>B.Tech CSE</strong> — Lovely Professional University
+                <span class="muted-text">(Cybersecurity Major, 2023 - Present)</span>
+            </li>
+        </ul>
+    </div>
+
+    <div class="about-actions">
+        <a href="{% static 'resume/Rishav_CV.pdf' %}" class="btn-solid" download>
+            Download Resume (PDF)
+        </a>
+    </div>
+
+</div>
+{% endblock %}

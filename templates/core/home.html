@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<section class="hero">
+    <p class="subtitle">Cybersecurity-Focused Backend Developer</p>
+    <h1>Rishav Ranjan <span>Patnaik</span></h1>
+
+    <p class="hero-description">
+        I build secure and scalable web applications using Django, REST APIs, 
+        and Linux-based backend systems. Specializing in high-performance architectures 
+        with a security-first mindset.
+    </p>
+
+    <div class="hero-buttons">
+        <a href="{% url 'project_list' %}" class="btn-solid">
+            View Projects
+        </a>
+
+        <a href="https://github.com/rishav-patnaik" target="_blank" class="btn-outline">
+            GitHub
+        </a>
+
+        <a href="https://www.linkedin.com/in/rishav-patnaik" target="_blank" class="btn-outline">
+            LinkedIn
+        </a>
+    </div>
+</section>
+
+<section class="skills-preview">
+    <h3>Core Technologies</h3>
+
+    <div class="skills-grid">
+        <span>Django</span>
+        <span>Python</span>
+        <span>REST APIs</span>
+        <span>PostgreSQL</span>
+        <span>Linux</span>
+        <span>Nmap</span>
+        <span>Wireshark</span>
+        <span>Burp Suite</span>
+    </div>
+</section>
+
+{% endblock %}

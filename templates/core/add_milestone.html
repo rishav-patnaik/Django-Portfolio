@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %}Initialize Milestone | System Admin{% endblock %}
+
+{% block content %}
+<div class="auth-wrapper">
+    <div class="glass-card auth-container">
+        <div class="auth-header">
+            <div class="auth-icon">
+                <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <polyline points="12 6 12 12 16 14"></polyline>
+                </svg>
+            </div>
+            <h2>Initialize Milestone</h2>
+            <p class="muted-text">Register a new chronological event in the system history</p>
+        </div>
+
+        <form method="post" class="auth-form">
+            {% csrf_token %}
+            
+            <div class="django-form-wrapper">
+                {{ form.as_p }}
+            </div>
+
+            <button type="submit" class="btn-solid full-width">
+                Register Event
+            </button>
+        </form>
+
+        <div class="auth-footer">
+            <a href="{% url 'manage_milestones' %}" class="accent-link">← Back to Dashboard</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %}Authentication | Terminal Login{% endblock %}
+
+{% block content %}
+<div class="auth-wrapper">
+    <div class="glass-card auth-container">
+        <div class="auth-header">
+            <div class="auth-icon">
+                <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                    <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                </svg>
+            </div>
+            <h2>Secure Login</h2>
+            <p class="muted-text">Enter credentials to access the terminal</p>
+        </div>
+
+        <form method="post" class="auth-form">
+            {% csrf_token %}
+            
+            <div class="django-form-wrapper">
+                {{ form.as_p }}
+            </div>
+
+            <button type="submit" class="btn-solid full-width">
+                Authenticate
+            </button>
+        </form>
+
+        <div class="auth-footer" style="margin-top: 2rem; text-align: center;">
+            <a href="{% url 'home' %}" class="accent-link" style="font-size: 0.85rem;">← Back to Dashboard</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

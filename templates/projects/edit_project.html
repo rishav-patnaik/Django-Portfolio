@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %}System Reconfig | Edit Project{% endblock %}
+
+{% block content %}
+<div class="auth-wrapper">
+    <div class="glass-card auth-container">
+        <div class="auth-header">
+            <div class="auth-icon">
+                <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                    <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                </svg>
+            </div>
+            <h2>Modify Module</h2>
+            <p class="muted-text">Updating configuration for: <span class="accent-link">{{ project.title }}</span></p>
+        </div>
+
+        <form method="post" class="auth-form" enctype="multipart/form-data">
+            {% csrf_token %}
+            
+            <div class="django-form-wrapper">
+                {{ form.as_p }}
+            </div>
+
+            <button type="submit" class="btn-solid full-width">
+                Commit Changes
+            </button>
+        </form>
+
+        <div class="auth-footer">
+            <a href="{% url 'manage_projects' %}" class="accent-link">← Cancel and Exit</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+
+{% block title %}System Chronology | Manage Milestones{% endblock %}
+
+{% block content %}
+<div class="dashboard-wrapper">
+    <header class="dashboard-header">
+        <div class="welcome-text">
+            <p class="subtitle">System Chronology / Event Registry</p>
+            <h1>Manage <span>Milestones</span></h1>
+        </div>
+        <div class="nav-right">
+            <a href="{% url 'add_milestone' %}" class="btn-solid-sm">
+                + Register New Milestone
+            </a>
+        </div>
+    </header>
+
+    <div class="glass-card table-container">
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>Event ID</th>
+                    <th>Milestone Title</th>
+                    <th>Subtitle / Context</th>
+                    <th>Timeline</th>
+                    <th class="text-right">Administrative Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for milestone in milestones %}
+                <tr>
+                    <td class="muted-text small-code">EVT_0{{ forloop.counter }}</td>
+                    <td>
+                        <div class="font-bold">{{ milestone.title }}</div>
+                    </td>
+                    <td>
+                        {% if milestone.subtitle %}
+                            <span class="muted-text">{{ milestone.subtitle }}</span>
+                        {% else %}
+                            <span class="muted-text" style="opacity: 0.3;">---</span>
+                        {% endif %}
+                    </td>
+                    <td class="muted-text small-code">
+                        {% if milestone.year %}[ {{ milestone.year }} ]{% else %}N/A{% endif %}
+                    </td>
+                    <td class="text-right">
+                        <div class="action-buttons">
+                            <a href="{% url 'edit_milestone' milestone.pk %}" class="btn-outline-sm">
+                                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
+                                Edit
+                            </a>
+                            <a href="{% url 'delete_milestone' milestone.pk %}" class="btn-purge">
+                                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+                                Delete
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="5" class="empty-log">
+                        Chronology empty. No system milestones indexed.
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <div class="auth-footer" style="text-align: left; margin-top: 2rem;">
+        <a href="{% url 'dashboard' %}" class="accent-link">← Back to Dashboard</a>
+    </div>
+</div>
+{% endblock %}

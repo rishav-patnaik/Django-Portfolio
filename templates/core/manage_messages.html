@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% block title %}System Logs | Manage Messages{% endblock %}
+
+{% block content %}
+<div class="dashboard-wrapper">
+    <header class="dashboard-header">
+        <div class="welcome-text">
+            <p class="subtitle">Log Management / Inbound</p>
+            <h1>Contact <span>Messages</span></h1>
+        </div>
+        <div class="status-badge">
+            <span class="pulse-dot"></span>
+            Live Monitoring
+        </div>
+    </header>
+
+    <div class="glass-card table-container">
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>Time</th>
+                    <th>Sender Name</th>
+                    <th>Sender Email</th>
+                    <th>Message Sent</th>
+                    <th class="text-right">Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for message in messages %}
+                <tr>
+                    <td class="muted-text small-code">{{ message.created_at|date:"Y-m-d H:i" }}</td>
+                    <td class="font-bold">{{ message.name }}</td>
+                    <td><a href="mailto:{{ message.email }}" class="accent-link">{{ message.email }}</a></td>
+                    <td class="message-cell">{{ message.message|truncatechars:50 }}</td>
+                    <td class="text-right">
+                        <a href="{% url 'delete_message' message.pk %}" class="btn-purge">
+                            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+                            Delete
+                        </a>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="5" class="empty-log">
+                        No inbound transmissions detected. System idle.
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <div class="auth-footer" style="text-align: left; margin-top: 2rem;">
+        <a href="{% url 'dashboard' %}" class="btn-outline-sm">← Back to Dashboard</a>
+    </div>
+</div>
+{% endblock %}

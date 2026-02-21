@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+
+{% block title %}System Inventory | Manage Projects{% endblock %}
+
+{% block content %}
+<div class="dashboard-wrapper">
+    <header class="dashboard-header">
+        <div class="welcome-text">
+            <p class="subtitle">Database / Inventory Management</p>
+            <h1>Manage <span>Projects</span></h1>
+        </div>
+        <div class="nav-right">
+            <a href="{% url 'add_project' %}" class="btn-solid-sm">
+                + Initialize New Module
+            </a>
+        </div>
+    </header>
+
+    <div class="glass-card table-container">
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>Module ID</th>
+                    <th>Project Title</th>
+                    <th>Tech Stack</th>
+                    <th class="text-right">Administrative Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for project in projects %}
+                <tr>
+                    <td class="muted-text small-code">#0{{ forloop.counter }}</td>
+                    <td class="font-bold">{{ project.title }}</td>
+                    <td>
+                        <div class="project-tech-stack" style="margin-bottom: 0;">
+                            <span class="tech-badge" style="font-size: 0.65rem;">{{ project.technology }}</span>
+                        </div>
+                    </td>
+                    <td class="text-right">
+                        <div class="action-buttons">
+                            <a href="{% url 'edit_project' project.pk %}" class="btn-outline-sm">
+                                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
+                                Edit
+                            </a>
+                            <a href="{% url 'delete_project' project.pk %}" class="btn-purge">
+                                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+                                Delete
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="4" class="empty-log">
+                        Inventory empty. No active modules detected.
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <div class="auth-footer" style="text-align: left; margin-top: 2rem;">
+        <a href="{% url 'dashboard' %}" class="accent-link">← Return to Main Terminal</a>
+    </div>
+</div>
+{% endblock %}

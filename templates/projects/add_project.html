@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %}Add Project | System Admin{% endblock %}
+
+{% block content %}
+<div class="auth-wrapper">
+    <div class="glass-card auth-container">
+        <div class="auth-header">
+            <div class="auth-icon">
+                <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="12" y1="5" x2="12" y2="19"></line>
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                </svg>
+            </div>
+            <h2>Initialize Project</h2>
+            <p class="muted-text">Register a new module to the portfolio database</p>
+        </div>
+
+        <form method="post" class="auth-form" enctype="multipart/form-data">
+            {% csrf_token %}
+            
+            <div class="django-form-wrapper">
+                {{ form.as_p }}
+            </div>
+
+            <button type="submit" class="btn-solid full-width">
+                Upload Project
+            </button>
+        </form>
+
+        <div class="auth-footer">
+            <a href="{% url 'dashboard' %}" class="accent-link">← Return to Dashboard</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

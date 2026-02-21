@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+
+{% block title %}Dashboard | Admin{% endblock %}
+
+{% block content %}
+
+<div class="dashboard-wrapper">
+    <header class="dashboard-header">
+        <div class="welcome-text">
+            <p class="subtitle">System / Access Granted</p>
+            <h1>
+                Welcome back, <span>{{ user.username }}</span>
+            </h1>
+        </div>
+
+        <div class="status-badge">
+            <span class="pulse-dot"></span>
+            System Active
+        </div>
+    </header>
+
+    <div class="stats-grid">
+        <div class="glass-card stat-card">
+            <span class="stat-label">Total Projects</span>
+            <p class="stat-value">{{ project_count }}</p>
+        </div>
+
+        <div class="glass-card stat-card">
+            <span class="stat-label">Contact Messages</span>
+            <p class="stat-value">{{ contact_count }}</p>
+        </div>
+
+        <div class="glass-card stat-card">
+            <span class="stat-label">Last Login</span>
+            <p class="stat-value">
+                {% if user.last_login %}
+                    {{ user.last_login|date:"M d, Y" }}
+                {% else %}
+                    First Login
+                {% endif %}
+            </p>
+        </div>
+    </div>
+
+    <div class="dashboard-main">
+        <div class="glass-card action-panel">
+            <h3>Administrative Actions</h3>
+
+            <div class="action-grid">
+
+                <a href="{% url 'add_project' %}" class="action-item">
+                    <div class="action-icon">📂</div>
+                    <span>Add Project</span>
+                </a>
+
+                <a href="{% url 'manage_projects' %}" class="action-item">
+                    <div class="action-icon">⚙️</div>
+                    <span>Manage Projects</span>
+                </a>
+
+                <a href="{% url 'manage_messages' %}" class="action-item">
+                    <div class="action-icon">📩</div>
+                    <span>View Messages</span>
+                </a>
+
+                <a href="{% url 'manage_skills' %}" class="action-item">
+                    <div class="action-icon">🛠</div>
+                    <span>Manage Skills</span>
+                </a>
+
+                <a href="{% url 'manage_certifications' %}" class="action-item">
+                    <div class="action-icon">🎓</div>
+                    <span>Manage Certifications</span>
+                </a>
+
+                <a href="{% url 'manage_milestones' %}" class="action-item">
+                    <div class="action-icon">🏆</div>
+                    <span>Manage Milestones</span>
+                </a>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
